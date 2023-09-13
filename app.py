@@ -1,8 +1,22 @@
 """A simple REST API app capable of CRUD operations."""
 
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+
+#creating database file with sqlite
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_api.db'
+db = SQLAlchemy(app)
+
+class Person(db):
+    '''Create Person Model'''
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Colunm(db.String(100), nullable=False)
+    
+    def __init__(self, name):
+        '''initialize class varible name'''
+        self.name = name    
 
 @app.route('/')
 def index():

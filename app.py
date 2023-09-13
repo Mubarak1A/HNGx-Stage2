@@ -22,10 +22,12 @@ class Person(db.Model):
 with app.app_context():
     db.create_all()
 
+
 @app.route('/')
 def index():
     """Home page route function"""
     return '<h1> HNGx-Stage 2 CRUD project task! </h1>'
+
 
 @app.route('/api/person', methods=['POST'])
 def create_user():
@@ -40,6 +42,37 @@ def create_user():
     db.session.commit()
 
     return jsonify({'message': 'Person created Successfully'}), 201
+
+
+@app.route('/api/person/<int:user_id>', methods=['GET'])
+def read_user(user_id):
+    '''Read and return user details from Database'''
+    person = Person.query.get(user_id)
+
+    if not person:
+        return jsonify({'message': 'person not found'}), 404
+
+    return jsonify({'id': person.id, 'name': person.name})
+
+
+@app.route('/api/<int:user_id>', methods=['PUT'])
+def update_user(user_id):
+    '''Update user details on Database'''
+    person = Person.query.get(user_id)
+    
+    if not person:
+        return jsonify({'message': 'person not found'}), 404
+    
+    new_name = request.json.get('name')
+    
+    if not new_name:
+        return jsonify({'message': 'New name is required'}), 400
+    
+    Person.name = new_name
+    db.session.commit()
+    
+    return jsonify({'message': 'Person updated successfully'}), 200
+    
 
 if __name__ == '__main__':
     app.run(debug=True)

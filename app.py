@@ -12,11 +12,11 @@ db = SQLAlchemy(app)
 class Person(db):
     '''Create Person Model'''
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Colunm(db.String(100), nullable=False)
-    
+    name = db.Column(db.String(100), nullable=False)
+
     def __init__(self, name):
         '''initialize class varible name'''
-        self.name = name    
+        self.name = name
 
 @app.route('/')
 def index():

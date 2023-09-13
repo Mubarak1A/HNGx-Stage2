@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_api.db'
 db = SQLAlchemy(app)
 
-class Person(db):
+class Person(db.Model):
     '''Create Person Model'''
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)

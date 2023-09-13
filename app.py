@@ -59,20 +59,34 @@ def read_user(user_id):
 def update_user(user_id):
     '''Update user details on Database'''
     person = Person.query.get(user_id)
-    
+
     if not person:
         return jsonify({'message': 'person not found'}), 404
-    
+
     new_name = request.json.get('name')
-    
+
     if not new_name:
         return jsonify({'message': 'New name is required'}), 400
-    
+
     Person.name = new_name
     db.session.commit()
-    
+
     return jsonify({'message': 'Person updated successfully'}), 200
-    
+
+
+@app.route('/api/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    '''Delete User from Database'''
+    person = Person.query.get(user_id)
+
+    if not person:
+        return jsonify({'message': 'Person not found'}), 404
+
+    db.session.delete(person)
+    db.session.commit()
+
+    return jsonify({'message': 'Person deleted successfully'}), 204
+
 
 if __name__ == '__main__':
     app.run(debug=True)

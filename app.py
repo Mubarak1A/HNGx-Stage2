@@ -55,7 +55,7 @@ def read_user(user_id):
     return jsonify({'id': person.id, 'name': person.name})
 
 
-@app.route('/api/<int:user_id>', methods=['PUT'])
+@app.route('/api/person/<int:user_id>', methods=['PUT'])
 def update_user(user_id):
     '''Update user details on Database'''
     person = Person.query.get(user_id)
@@ -74,7 +74,7 @@ def update_user(user_id):
     return jsonify({'message': 'Person updated successfully'}), 200
 
 
-@app.route('/api/<int:user_id>', methods=['DELETE'])
+@app.route('/api/person/<int:user_id>', methods=['DELETE'])
 def delete_user(user_id):
     '''Delete User from Database'''
     person = Person.query.get(user_id)
@@ -86,6 +86,24 @@ def delete_user(user_id):
     db.session.commit()
 
     return jsonify({'message': 'Person deleted successfully'}), 204
+
+
+@app.route('/api/persons', methods=['GET'])
+def get_person_by_name():
+    '''Retreive users with a name'''
+    name = request.args.get('name')
+
+    if not name:
+        return jsonify({'message': 'Name parameter is required'}), 400
+
+    persons = Person.query.filter_by(name=name).all()
+
+    if not persons:
+        return jsonify({'message': 'No persons found with the provided name'}), 404
+
+    persons_data = [{'id': person.id, 'name': person.name} for person in persons]
+
+    return jsonify(persons_data)
 
 
 if __name__ == '__main__':

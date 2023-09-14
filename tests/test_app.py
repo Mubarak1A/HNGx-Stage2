@@ -6,6 +6,7 @@ from app import app, db, Person
 
 @pytest.fixture
 def client():
+    ''''format default client var from pytest library'''
     app.config['TESTING'] = True
     client = app.test_client()
     db.create_all()
@@ -13,17 +14,17 @@ def client():
     db.drop_all()
 
 def test_create_person(client):
+    '''Test Create_user: Check if the person was added to the database'''
     data = {'name': 'John Doe'}
     response = client.post('/api/person', json=data)
 
     assert response.status_code == 201
 
-    # Check if the person was added to the database
     person = Person.query.first()
     assert person.name == 'John Doe'
 
 def test_get_person(client):
-    # Add a person to the database for testing
+    ''''Test get_person route function'''
     person = Person(name='Alice')
     db.session.add(person)
     db.session.commit()
@@ -36,13 +37,15 @@ def test_get_person(client):
     assert data['name'] == 'Alice'
 
 def test_get_person_not_found(client):
-    response = client.get('/api/person/999')  # Non-existent ID
+    ''''Test get_person error handling'''
+    response = client.get('/api/person/999') # Non-existent ID
 
     assert response.status_code == 404
     data = json.loads(response.data.decode('utf-8'))
     assert data['message'] == 'Person not found'
 
 def test_update_person(client):
+    '''Test update_person route function'''
     # Add a person to the database for testing
     person = Person(name='Bob')
     db.session.add(person)
@@ -58,6 +61,7 @@ def test_update_person(client):
     assert updated_person.name == 'Robert'
 
 def test_update_person_not_found(client):
+    '''Test update_person error handling'''
     new_data = {'name': 'Updated Name'}
     response = client.put('/api/person/999', json=new_data)  # Non-existent ID
 
@@ -66,6 +70,7 @@ def test_update_person_not_found(client):
     assert data['message'] == 'Person not found'
 
 def test_delete_person(client):
+    ''''Test delete_person route function'''
     # Add a person to the database for testing
     person = Person(name='Carol')
     db.session.add(person)
@@ -80,6 +85,7 @@ def test_delete_person(client):
     assert deleted_person is None
 
 def test_delete_person_not_found(client):
+    ''''Test delete person error handling'''
     response = client.delete('/api/person/999')  # Non-existent ID
 
     assert response.status_code == 404

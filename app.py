@@ -45,7 +45,7 @@ def create_person():
 
 
 @app.route('/api/person/<int:user_id>', methods=['GET'])
-def read_person(user_id):
+def get_person(user_id):
     '''Read and return user details from Database'''
     person = Person.query.get(user_id)
 

@@ -30,7 +30,7 @@ def index():
 
 
 @app.route('/api/person', methods=['POST'])
-def create_user():
+def create_person():
     '''Add the user to the database'''
     name = request.json.get('name')
 
@@ -45,7 +45,7 @@ def create_user():
 
 
 @app.route('/api/person/<int:user_id>', methods=['GET'])
-def read_user(user_id):
+def read_person(user_id):
     '''Read and return user details from Database'''
     person = Person.query.get(user_id)
 
@@ -56,7 +56,7 @@ def read_user(user_id):
 
 
 @app.route('/api/person/<int:user_id>', methods=['PUT'])
-def update_user(user_id):
+def update_person(user_id):
     '''Update user details on Database'''
     person = Person.query.get(user_id)
 
@@ -75,7 +75,7 @@ def update_user(user_id):
 
 
 @app.route('/api/person/<int:user_id>', methods=['DELETE'])
-def delete_user(user_id):
+def delete_person(user_id):
     '''Delete User from Database'''
     person = Person.query.get(user_id)
 

@@ -69,3 +69,9 @@ The base URL for all endpoints is: `https://hngx-stage2-161q.onrender.com`
 {
     "message": "Person not found"
 }
+
+# Modelling Diagrams:
+## UML DIAGRAM
+<img src="/imgs/UML.png">
+## E-R DIAGRAM
+<img src="/imgs/E-R.png">

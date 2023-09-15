@@ -72,6 +72,6 @@ The base URL for all endpoints is: `https://hngx-stage2-161q.onrender.com`
 
 # Modelling Diagrams:
 ## UML DIAGRAM
-<img src="/imgs/UML.png">
+<img src="/imgs/UML.png" style="max-width: 300px">
 ## E-R DIAGRAM
-<img src="/imgs/E-R.png">
+<img src="/imgs/E-R.png" style="max-width: 300px">

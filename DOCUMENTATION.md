@@ -10,7 +10,7 @@ The base URL for all endpoints is: `https://hngx-stage2-161q.onrender.com`
 
 ### 1. Create a New Person
 
-**Endpoint:** `/api/person`
+**Endpoint:** `/api`
 **Method:** `POST`
 **Request Format:**
 {
@@ -27,7 +27,7 @@ The base URL for all endpoints is: `https://hngx-stage2-161q.onrender.com`
 
 ### 2. Get Person by ID
 
-**Endpoint:** `/api/person/<user_id>`
+**Endpoint:** `/api/<user_id>`
 **Method:** `GET`
 
 **Response Format (Success):**
@@ -41,7 +41,7 @@ The base URL for all endpoints is: `https://hngx-stage2-161q.onrender.com`
 }
 
 ### 3. Update Person Details
-**Endpoint:** `/api/person/<user_id>`
+**Endpoint:** `/api/<user_id>`
 **Method:** `PUT`
 **Request Format:**
 {
@@ -58,7 +58,7 @@ The base URL for all endpoints is: `https://hngx-stage2-161q.onrender.com`
 }
 
 ### 4. Delete a Person
-**Endpoint:** `/api/person/<user_id>`
+**Endpoint:** `/api/<user_id>`
 **Method:** `DELETE`
 
 **Response Format (Success):**

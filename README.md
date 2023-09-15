@@ -31,6 +31,5 @@ Test extensively with various testing tools to make sure it is accessible before
 # Modelling Diagrams:
 ## UML DIAGRAM
 <img src="/imgs/UML.png">
-    ![Alt text](/posts/path/to/img.jpg "Optional title")
 ## E-R DIAGRAM
 <img src="/imgs/E-R.png">

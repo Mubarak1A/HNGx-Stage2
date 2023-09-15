@@ -29,7 +29,7 @@ def index():
     return '<h1> HNGx-Stage 2 CRUD project task! </h1>'
 
 
-@app.route('/api/person', methods=['POST'])
+@app.route('/api', methods=['POST'])
 def create_person():
     '''Add the user to the database'''
     name = request.json.get('name')

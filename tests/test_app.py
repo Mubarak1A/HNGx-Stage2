@@ -2,7 +2,7 @@
 
 import json
 import pytest
-from app import app, db, Person
+from ..app import app, db, Person
 
 @pytest.fixture
 def client():

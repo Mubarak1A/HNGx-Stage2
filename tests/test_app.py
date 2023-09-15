@@ -16,7 +16,7 @@ def client():
 def test_create_person(client):
     '''Test Create_user: Check if the person was added to the database'''
     data = {'name': 'John Doe'}
-    response = client.post('/api/person', json=data)
+    response = client.post('/api', json=data)
 
     assert response.status_code == 201
 
@@ -30,7 +30,7 @@ def test_get_person(client):
     db.session.add(person)
     db.session.commit()
 
-    response = client.get('/api/person/1')
+    response = client.get('/api/1')
 
     assert response.status_code == 200
     data = json.loads(response.data.decode('utf-8'))
@@ -39,7 +39,7 @@ def test_get_person(client):
 
 def test_get_person_not_found(client):
     ''''Test get_person error handling'''
-    response = client.get('/api/person/999')
+    response = client.get('/api/999')
 
     assert response.status_code == 404
     data = json.loads(response.data.decode('utf-8'))
@@ -53,7 +53,7 @@ def test_update_person(client):
     db.session.commit()
 
     new_data = {'name': 'Robert'}
-    response = client.put('/api/person/1', json=new_data)
+    response = client.put('/api/1', json=new_data)
 
     assert response.status_code == 200
 
@@ -64,7 +64,7 @@ def test_update_person(client):
 def test_update_person_not_found(client):
     '''Test update_person error handling'''
     new_data = {'name': 'Updated Name'}
-    response = client.put('/api/person/999', json=new_data)
+    response = client.put('/api/999', json=new_data)
 
     assert response.status_code == 404
     data = json.loads(response.data.decode('utf-8'))
@@ -77,7 +77,7 @@ def test_delete_person(client):
     db.session.add(person)
     db.session.commit()
 
-    response = client.delete('/api/person/1')
+    response = client.delete('/api/1')
 
     assert response.status_code == 204
 
@@ -87,7 +87,7 @@ def test_delete_person(client):
 
 def test_delete_person_not_found(client):
     ''''Test delete person error handling'''
-    response = client.delete('/api/person/999')
+    response = client.delete('/api/999')
 
     assert response.status_code == 404
     data = json.loads(response.data.decode('utf-8'))

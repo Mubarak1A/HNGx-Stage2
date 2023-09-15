@@ -4,7 +4,7 @@ This documentation provides information on how to use the API for managing perso
 
 ## Base URL
 
-The base URL for all endpoints is: `http://localhost:5000` (when running locally)
+The base URL for all endpoints is: `https://hngx-stage2-161q.onrender.com`
 
 ## Endpoints
 

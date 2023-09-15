@@ -25,6 +25,7 @@ def test_create_person(client):
 
 def test_get_person(client):
     ''''Test get_person route function'''
+    # Add a person to the database for testing
     person = Person(name='Alice')
     db.session.add(person)
     db.session.commit()
@@ -38,7 +39,7 @@ def test_get_person(client):
 
 def test_get_person_not_found(client):
     ''''Test get_person error handling'''
-    response = client.get('/api/person/999') # Non-existent ID
+    response = client.get('/api/person/999')
 
     assert response.status_code == 404
     data = json.loads(response.data.decode('utf-8'))
@@ -63,7 +64,7 @@ def test_update_person(client):
 def test_update_person_not_found(client):
     '''Test update_person error handling'''
     new_data = {'name': 'Updated Name'}
-    response = client.put('/api/person/999', json=new_data)  # Non-existent ID
+    response = client.put('/api/person/999', json=new_data)
 
     assert response.status_code == 404
     data = json.loads(response.data.decode('utf-8'))
@@ -86,7 +87,7 @@ def test_delete_person(client):
 
 def test_delete_person_not_found(client):
     ''''Test delete person error handling'''
-    response = client.delete('/api/person/999')  # Non-existent ID
+    response = client.delete('/api/person/999')
 
     assert response.status_code == 404
     data = json.loads(response.data.decode('utf-8'))

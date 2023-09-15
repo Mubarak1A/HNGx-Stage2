@@ -30,6 +30,6 @@ Test extensively with various testing tools to make sure it is accessible before
 
 # Modelling Diagrams:
 ## UML DIAGRAM
-    <img src="/imgs/UML.png", alt=img>
+    <img src="/imgs/UML.png">
 ## E-R DIAGRAM
-    <img src="/imgs/E-R.png", alt=img>
+    <img src="/imgs/E-R.png">

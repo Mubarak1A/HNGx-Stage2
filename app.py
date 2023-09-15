@@ -44,7 +44,7 @@ def create_person():
     return jsonify({'message': 'Person created Successfully'}), 201
 
 
-@app.route('/api/person/<int:user_id>', methods=['GET'])
+@app.route('/api/<int:user_id>', methods=['GET'])
 def get_person(user_id):
     '''Read and return user details from Database'''
     person = Person.query.get(user_id)
@@ -55,7 +55,7 @@ def get_person(user_id):
     return jsonify({'id': person.id, 'name': person.name})
 
 
-@app.route('/api/person/<int:user_id>', methods=['PUT'])
+@app.route('/api/<int:user_id>', methods=['PUT'])
 def update_person(user_id):
     '''Update user details on Database'''
     person = Person.query.get(user_id)
@@ -74,7 +74,7 @@ def update_person(user_id):
     return jsonify({'message': 'Person updated successfully'}), 200
 
 
-@app.route('/api/person/<int:user_id>', methods=['DELETE'])
+@app.route('/api/<int:user_id>', methods=['DELETE'])
 def delete_person(user_id):
     '''Delete User from Database'''
     person = Person.query.get(user_id)
@@ -88,7 +88,7 @@ def delete_person(user_id):
     return jsonify({'message': 'Person deleted successfully'}), 204
 
 
-@app.route('/api/persons', methods=['GET'])
+@app.route('/api', methods=['GET'])
 def get_person_by_name():
     '''Retreive users with a name'''
     name = request.args.get('name')
